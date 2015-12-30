@@ -11,8 +11,10 @@ public class OptionsPane extends JPanel
     public OptionsPane()
     {
         super();
+        this.setBackground(Color.LIGHT_GRAY);
 
-        this.setBackground(Color.BLACK);
-
+        this.setLayout(new GridLayout(2, 1, 5, 5));
+        this.add(new WaveOptionsPanel());
+        this.add(new GraphOptionsPanel());
     }
 }
