@@ -1,7 +1,5 @@
 package layout;
 
-import javafx.scene.layout.GridPane;
-
 import javax.swing.*;
 import java.awt.*;
 

@@ -23,9 +23,9 @@ public class GraphPane extends JPanel
     public GraphPane()
     {
         super();
-        this.setBackground(Color.RED);
+        this.setBackground(Color.LIGHT_GRAY);
 
-
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK),"Graph"));
     }
 
 
