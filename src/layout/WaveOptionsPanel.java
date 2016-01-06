@@ -16,4 +16,10 @@ public class WaveOptionsPanel extends JPanel
         this.setBackground(Color.LIGHT_GRAY);
     }
 
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+    }
+
+
 }
