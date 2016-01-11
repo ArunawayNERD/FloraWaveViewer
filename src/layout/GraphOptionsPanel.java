@@ -2,11 +2,13 @@ package layout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Johnny on 12/30/2015.
  */
-public class GraphOptionsPanel extends JPanel
+public class GraphOptionsPanel extends JPanel implements ActionListener
 {
     /** This 2D  array of JPanels allows for components to be added to
      * a specific section of the grid which is normally not possible.
@@ -30,7 +32,7 @@ public class GraphOptionsPanel extends JPanel
             for(int j = 0; j < 4; j++)
             {
                 placeholderPanels[i][j] = new JPanel();
-                placeholderPanels[i][j].setLayout(new BorderLayout(15, 20));
+                placeholderPanels[i][j].setLayout(new GridBagLayout());
                 placeholderPanels[i][j].setBackground(Color.LIGHT_GRAY);
                 this.add(placeholderPanels[i][j]);
             }
@@ -42,265 +44,102 @@ public class GraphOptionsPanel extends JPanel
     public void initComponents()
     {
 
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.insets = new Insets(15, 5, 15, 5);
 
         ///////////
         //X Range
         ///////////
         JLabel xMin = new JLabel("X Min:");
-        xMin.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[0][0].add(xMin, BorderLayout.CENTER);
+        placeholderPanels[0][0].add(xMin, constraints);
 
         JTextField xMinInput = new JTextField(10);
-        xMinInput.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[0][1].add(xMinInput, BorderLayout.CENTER);
+        constraints.weightx = 1;
+        placeholderPanels[0][1].add(xMinInput, constraints);
 
 
         JLabel xMax = new JLabel("X Max:");
-        xMax.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[0][2].add(xMax, BorderLayout.CENTER);
+        constraints.weightx = 0;
+        placeholderPanels[0][2].add(xMax, constraints);
 
         JTextField xMaxInput = new JTextField(10);
-        xMaxInput.setBorder(BorderFactory.createEmptyBorder(20, 15,20, 15));
-        placeholderPanels[0][3].add(xMaxInput, BorderLayout.CENTER);
+        constraints.weightx = 1;
+        placeholderPanels[0][3].add(xMaxInput, constraints);
 
         ///////////
         //Y Range
         ///////////
+
         JLabel yMin = new JLabel("Y Min:");
-        yMin.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[1][0].add(yMin, BorderLayout.CENTER);
+        constraints.weightx = 0;
+        placeholderPanels[1][0].add(yMin, constraints);
 
         JTextField yMinInput = new JTextField(10);
-        yMinInput.setBorder(BorderFactory.createEmptyBorder(20, 15,20, 15));
-        placeholderPanels[1][1].add(yMinInput, BorderLayout.CENTER);
-
+        constraints.weightx = 1;
+        placeholderPanels[1][1].add(yMinInput, constraints);
 
         JLabel yMax = new JLabel("Y Max:");
-        yMax.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[1][2].add(yMax, BorderLayout.CENTER);
+        constraints.weightx = 0;
+        placeholderPanels[1][2].add(yMax, constraints);
 
         JTextField yMaxInput = new JTextField(10);
-        yMaxInput.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[1][3].add(yMaxInput, BorderLayout.CENTER);
-
+        constraints.weightx = 1;
+        placeholderPanels[1][3].add(yMaxInput, constraints);
 
         ///////////
-        //X Range
+        //Time range
         ///////////
-        //html is used in the JLabels because they do not support
-        //the \n character....but they support html....
-        JLabel timeMin = new JLabel("<html>Time<br>Start:</html>");
-        timeMin.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[2][0].add(timeMin, BorderLayout.CENTER);
+
+        JLabel timeMin = new JLabel("Time Start:");
+        constraints.weightx = 0;
+        placeholderPanels[2][0].add(timeMin, constraints);
 
         JTextField timeMinInput = new JTextField(10);
-        timeMinInput.setBorder(BorderFactory.createEmptyBorder(20, 15,20, 15));
-        placeholderPanels[2][1].add(timeMinInput, BorderLayout.CENTER);
+        constraints.weightx = 1;
+        placeholderPanels[2][1].add(timeMinInput, constraints);
 
-
-        JLabel timeMax = new JLabel("<html>Time<br>Stop:</html>");
-        timeMax.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[2][2].add(timeMax, BorderLayout.CENTER);
+        JLabel timeMax = new JLabel("Time Stop:");
+        constraints.weightx = 0;
+        placeholderPanels[2][2].add(timeMax, constraints);
 
         JTextField timeMaxInput = new JTextField(10);
-        timeMaxInput.setBorder(BorderFactory.createEmptyBorder(20, 15,20, 15));
-        placeholderPanels[2][3].add(timeMaxInput, BorderLayout.CENTER);
-
+        constraints.weightx = 1;
+        placeholderPanels[2][3].add(timeMaxInput, constraints);
 
         /////////////
         //Time Step
         /////////////
-        JLabel timeStep = new JLabel("<html>Time<br>Step:</html>");
-        timeStep.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[3][1].add(timeStep, BorderLayout.CENTER);
+        JLabel timeStep = new JLabel("Time Step:");
+        constraints.weightx = 0;
+        placeholderPanels[3][1].add(timeStep, constraints);
 
         JTextField timeStepInput = new JTextField(10);
-        timeStepInput.setBorder(BorderFactory.createEmptyBorder(20, 15,20, 15));
-        placeholderPanels[3][2].add(timeStepInput, BorderLayout.CENTER);
+        constraints.weightx = 1;
+        placeholderPanels[3][2].add(timeStepInput, constraints);
 
         /////////////
         //Buttons
         /////////////
-        JButton update = new JButton("Update");
-        update.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[4][1].add(update, BorderLayout.CENTER);
 
-        JButton clear = new JButton("Clear");
-        clear.setBorder(BorderFactory.createEmptyBorder(20, 15, 20, 15));
-        placeholderPanels[4][2].add(clear, BorderLayout.CENTER);
-
-
-
-     /*   GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
+        //adjust the insets for the buttons
+        constraints.insets = new Insets(15, 5, 15, 5);
         constraints.weighty = 1;
 
-        ///////////
-        //X Range
-        ///////////
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 15, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("X Min:"), constraints);
+        JButton update = new JButton("Update");
+        update.setMargin(new Insets(20, 0, 20, 0));
+        placeholderPanels[4][1].add(update, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 0, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
+        JButton clear = new JButton("Clear");
+        clear.setMargin(new Insets(20, 0, 20, 0));
+        placeholderPanels[4][2].add(clear, constraints);
+    }
 
-        constraints.gridx = 2;
-        constraints.gridy = 0;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 0, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("X Max:"), constraints);
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
 
-        constraints.gridx = 3;
-        constraints.gridy = 0;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 0, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
-
-
-        ///////////
-        //Y Range
-        ///////////
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 15, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("Y Min:"), constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 0, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
-
-        constraints.gridx = 2;
-        constraints.gridy = 1;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 0, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("Y Max:"), constraints);
-
-        constraints.gridx = 3;
-        constraints.gridy = 1;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 0, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
-
-        ///////////
-        //Time Range
-        ///////////
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 15, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("Time Min:"), constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 0, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
-
-        constraints.gridx = 2;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 0, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("Time Max:"), constraints);
-
-        constraints.gridx = 3;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 0, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
-
-        ////////////
-        //Time Step
-        ////////////
-        constraints.gridx = 1;
-        constraints.gridy = 3;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .1;
-        constraints.insets = new Insets(20, 0, 20, 0);
-        constraints.anchor = GridBagConstraints.WEST;
-        this.add(new JLabel("Time Step:"), constraints);
-
-        constraints.gridx = 2;
-        constraints.gridy = 3;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.insets = new Insets(20, 20, 20, 20);
-        constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JTextField(10), constraints);
-
-        ///////////
-        //Buttons
-        ///////////
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .25;
-        constraints.insets = new Insets(15, 30, 15, 30);
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        JButton submit = new JButton("Submit");
-        submit.setMaximumSize(new Dimension(100, 25));
-        this.add(submit, constraints);
-
-
-        constraints.gridx = 2;
-        constraints.gridy = 4;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 1;
-        constraints.weightx = .25;
-        constraints.insets = new Insets(15, 30, 15, 30);
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        JButton reset = new JButton("Reset");
-        reset.setMaximumSize(new Dimension(100, 25));
-        this.add(reset, constraints);
-        */
     }
 }
