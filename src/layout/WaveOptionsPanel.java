@@ -43,7 +43,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener
         constraints.weightx = .1;
         constraints.insets = new Insets(20, 15, 20, 0);
         constraints.anchor = GridBagConstraints.EAST;
-        this.add(new JLabel("Amplitude:"), constraints);
+        this.add(new JLabel("Amplitude(m):"), constraints);
 
         //field
         constraints.gridx = 2;

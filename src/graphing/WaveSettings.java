@@ -8,9 +8,6 @@ public class WaveSettings
 
 
     private double amplitude;
-
-
-
     private double frequency;
     private double waveLength;
     private double phaseCons;

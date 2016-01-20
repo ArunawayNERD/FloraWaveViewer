@@ -112,17 +112,6 @@ public class GraphPane extends JPanel implements MouseMotionListener
         g2.drawLine((int) Math.rint(xGridLineStep * 10 + boarder.left), boarder.top,
                 (int) Math.rint(xGridLineStep * 10 + boarder.left), this.getHeight() - boarder.bottom);
 
-//        int thickness = 4;
-//
-//        if(this.getHeight() % 2  == 1)
-//            thickness = 5;
-//
-//        for(int i = 0; i < thickness; i++)
-//        {
-//            g2.drawLine(boarder.left, axisStart + i, this.getWidth() - boarder.right, axisStart + i);
-//        }
-
-
     }
 
     @Override
