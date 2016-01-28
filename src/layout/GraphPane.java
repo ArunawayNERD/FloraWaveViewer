@@ -54,7 +54,7 @@ public class GraphPane extends JPanel implements MouseMotionListener
         double yGridLineStep = sizeY/20;
 
 
-        System.out.println(sizeX + ", "+ sizeY + ", " + xGridLineStep + ", "+ yGridLineStep);
+      //  System.out.println(sizeX + ", "+ sizeY + ", " + xGridLineStep + ", "+ yGridLineStep);
 
         //draw the gridlines
         if(gridLines)

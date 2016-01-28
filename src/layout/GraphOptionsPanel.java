@@ -22,7 +22,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Graph Options"));
         this.setBackground(Color.LIGHT_GRAY);
         //this.setLayout(new GridBagLayout());
-        this.setLayout(new GridLayout(5, 4, 5, 5));
+        this.setLayout(new GridLayout(5, 4));
 
         //fill in the array of place holder panels
         placeholderPanels = new JPanel[5][4];
@@ -48,12 +48,12 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         constraints.fill = GridBagConstraints.BOTH;
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.insets = new Insets(15, 5, 15, 5);
+        constraints.insets = new Insets(15, 0, 15, 0);
 
         ///////////
         //X Range
         ///////////
-        JLabel xMin = new JLabel("X Min:");
+        JLabel xMin = new JLabel("X Min (m):");
         placeholderPanels[0][0].add(xMin, constraints);
 
         JTextField xMinInput = new JTextField(10);
@@ -61,7 +61,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         placeholderPanels[0][1].add(xMinInput, constraints);
 
 
-        JLabel xMax = new JLabel("X Max:");
+        JLabel xMax = new JLabel("X Max (m):");
         constraints.weightx = 0;
         placeholderPanels[0][2].add(xMax, constraints);
 
@@ -73,7 +73,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         //Y Range
         ///////////
 
-        JLabel yMin = new JLabel("Y Min:");
+        JLabel yMin = new JLabel("Y Min (m):");
         constraints.weightx = 0;
         placeholderPanels[1][0].add(yMin, constraints);
 
@@ -81,7 +81,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         constraints.weightx = 1;
         placeholderPanels[1][1].add(yMinInput, constraints);
 
-        JLabel yMax = new JLabel("Y Max:");
+        JLabel yMax = new JLabel("Y Max (m):");
         constraints.weightx = 0;
         placeholderPanels[1][2].add(yMax, constraints);
 
@@ -93,7 +93,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         //Time range
         ///////////
 
-        JLabel timeMin = new JLabel("Time Start:");
+        JLabel timeMin = new JLabel("Time Start (s):");
         constraints.weightx = 0;
         placeholderPanels[2][0].add(timeMin, constraints);
 
@@ -101,7 +101,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         constraints.weightx = 1;
         placeholderPanels[2][1].add(timeMinInput, constraints);
 
-        JLabel timeMax = new JLabel("Time Stop:");
+        JLabel timeMax = new JLabel("Time Stop (s):");
         constraints.weightx = 0;
         placeholderPanels[2][2].add(timeMax, constraints);
 
@@ -112,7 +112,7 @@ public class GraphOptionsPanel extends JPanel implements ActionListener
         /////////////
         //Time Step
         /////////////
-        JLabel timeStep = new JLabel("Time Step:");
+        JLabel timeStep = new JLabel("Time Step (s):");
         constraints.weightx = 0;
         placeholderPanels[3][1].add(timeStep, constraints);
 

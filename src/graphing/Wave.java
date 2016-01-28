@@ -45,8 +45,6 @@ public class Wave
         this.period = 1/waveConstants.getFrequency();
         this.omega = 2* Math.PI * waveConstants.getFrequency();
         this.waveNumber = (2 * Math.PI) / waveConstants.getWaveLength();
-
-
     }
 
     public GraphPoint [] GeneratePoints(double time)

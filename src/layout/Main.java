@@ -20,11 +20,11 @@ public class Main extends JFrame
 
         mainPanel.setSize(this.getSize());
 
-;
+
 
         //divider settings
         mainPanel.setDividerSize(7);
-        mainPanel.setDividerLocation(.75); //set the divider to be at 75% of the total width
+        mainPanel.setDividerLocation(.7); //set the divider to be at 75% of the total width
         mainPanel.setEnabled(false); //lock the divider in place (may change in the future)
 
         //add the panels
