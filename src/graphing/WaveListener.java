@@ -5,5 +5,5 @@ package graphing;
  */
 public interface WaveListener
 {
-    public void waveUpdated(WaveUpdateEvent e);
+    public void waveUpdated(WaveEvent e);
 }

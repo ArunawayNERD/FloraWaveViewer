@@ -23,7 +23,8 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
      */
     private ArrayList<WaveListener> listeners = new ArrayList<WaveListener>();
 
-    public WaveOptionsPanel() {
+    public WaveOptionsPanel()
+    {
         super();
 
         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Wave Options"));

@@ -161,6 +161,4 @@ public class Wave
     {
         this.xStart = xStart;
     }
-
-
 }

@@ -5,14 +5,12 @@ package graphing;
  */
 public class WaveSettings
 {
-
-
-    private double amplitude;
+   private double amplitude;
     private double frequency;
     private double waveLength;
     private double phaseCons;
 
-    public WaveSettings(double amplitude, double frequency, double waveLength, double phaseCons)
+    public WaveSettings(double amplitude, double waveLength, double frequency, double phaseCons)
     {
         this.amplitude = amplitude;
         this.frequency = frequency;
