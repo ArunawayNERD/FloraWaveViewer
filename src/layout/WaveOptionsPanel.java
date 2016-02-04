@@ -1,27 +1,32 @@
 package layout;
 
+import graphing.WaveListener;
+
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Johnny on 12/30/2015.
  */
-public class WaveOptionsPanel extends JPanel implements ActionListener
-{
+public class WaveOptionsPanel extends JPanel implements ActionListener {
     /**
      * This holds the four input text fields so they can be accessed by the action event
      * The inputs will be in the following order. Amplitude, wave length, frequency,phase constant
      */
-    private JTextField [] inputs;
+    private JTextField[] inputs;
 
-    public WaveOptionsPanel()
-    {
+    /**
+     * Holds the objects who are listening to this object for wave events
+     */
+    private ArrayList<WaveListener> listeners = new ArrayList<WaveListener>();
+
+    public WaveOptionsPanel() {
         super();
 
-        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK),"Wave Options"));
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Wave Options"));
         this.setBackground(Color.LIGHT_GRAY);
 
         this.setLayout(new GridBagLayout());
@@ -32,11 +37,10 @@ public class WaveOptionsPanel extends JPanel implements ActionListener
         initComponents();
     }
 
-    public void initComponents()
-    {
+    public void initComponents() {
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
-  //      constraints.weightx = 1;
+        //      constraints.weightx = 1;
         constraints.weighty = 1;
 
         ///////////
@@ -172,83 +176,108 @@ public class WaveOptionsPanel extends JPanel implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource() instanceof JButton)
+        if (e.getSource() instanceof JButton)
         {
             JButton clicked = (JButton) e.getSource();
 
-            if(clicked.getText() == "Submit")
+            if (clicked.getText().equals("Submit"))
             {
-                String [] inputValues = {inputs[0].getText(), inputs[1].getText(),
-                                         inputs[2].getText(),inputs[3].getText()};
+                String[] inputValues = {inputs[0].getText(), inputs[1].getText(),
+                                        inputs[2].getText(), inputs[3].getText()};
 
                 //since its the submit button we need to check input
-
-                for(int i = 0; i  < inputValues.length; i++)
+                for (int i = 0; i < inputValues.length; i++)
                 {
                     boolean inputError = false;
                     String errorMsg = "";
+                    int decimalPointCount = 0;
 
-                    for(int j = 0; i < inputValues[i].length(); j++)
+                    //check to make sure the field isn't left empty. If it is set the flag and error message
+                    //Since the length of the string is 0 in this case we don't need to worry about the for loop
+                    if(inputValues[i].length() == 0)
                     {
-
+                        inputError = true;
+                        errorMsg += getField(i, true) + " is a required field.\nPlease enter a value.";
                     }
 
-                    if(inputError)
+                    for (int j = 0; j < inputValues[i].length(); j++)
                     {
-                        System.out.println(errorMsg);
+                        if (!(Character.isDigit(inputValues[i].charAt(j)) || inputValues[i].charAt(j) == '.'))
+                        {
+
+                            //if the digit is not a number or a decimal point, set the
+                            //error flag and error message. Then exit this loop
+                            inputError = true;
+                            errorMsg += "The entered " + getField(i, false) +  " is not a number.\nPlease correct the value.";
+                            break;
+                        }
+
+                        //if the character is a decimal point then increment the counter
+                        //this is to make sure we don't get numbers like 1..0 or 1.1.1 etc
+                        if(inputValues[i].charAt(j) == '.')
+                        {
+                            decimalPointCount++;
+                        }
+                    }
+
+                    //if there are too many decimal points set the input error flag and message
+                    if(decimalPointCount > 1)
+                    {
+                        inputError = true;
+                        errorMsg = "The entered value for " + getField(i, false) + " is not a valid number.\nPlease correct the value.";
+                    }
+
+                    //If at any point the error flag was set, then pop up an error message and exit the method
+                    if (inputError)
+                    {
+                        JOptionPane.showMessageDialog(null, errorMsg, "Input Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 }
+            }
 
-                //need to split the input around the decimal if it exists
-                //because apparently the built in test for numeric strings
-                //is just integers
-
-                String [] amplitudeIn = inputs[0].getText().split("\\.");
-                String [] waveLengthIn = inputs[1].getText().split("\\.");
-                String [] frequencyIn = inputs[2].getText().split("\\.");
-                String [] phaseIn = inputs[3].getText().split("\\.");
-
-                boolean inputError = false;
-
-               // System.out.println(inputs[0].getText() + " " +amplitudeIn.length + " " + waveLengthIn.length);
-
-                //make sure they all only have one decimal
-                if(amplitudeIn.length > 2)
+            if(clicked.getText().equals("Reset"))
+            {
+                for(JTextField i : inputs)
                 {
-                    JOptionPane.showMessageDialog(null, "The amplitude has too many decimal points.\nPlease correct the value.",
-                            "Input Error", JOptionPane.ERROR_MESSAGE);
-
-                    inputError = true;
+                    i.setText("");
                 }
-
-                if(waveLengthIn.length > 2)
-                {
-                    JOptionPane.showMessageDialog(null, "The wave length has too many decimal points.\nPlease correct the value.",
-                            "Input Error", JOptionPane.ERROR_MESSAGE);
-                    inputError = true;
-                }
-
-                if(frequencyIn.length > 2)
-                {
-                    JOptionPane.showMessageDialog(null, "The Frequency has too many decimal points.\nPlease correct the value.",
-                            "Input Error", JOptionPane.ERROR_MESSAGE);
-                    inputError = true;
-                }
-
-                if(phaseIn.length > 2)
-                {
-                    JOptionPane.showMessageDialog(null, "The phase constant has too many decimal points.\nPlease correct the value.",
-                            "Input Error", JOptionPane.ERROR_MESSAGE);
-                    inputError = true;
-                }
-
-                //if there is an input error exit the method
-                if(inputError)
-                    return;
-
-                //if there is the correct number of
             }
         }
+    }
+
+    /**
+     * This method returns the name of field for the given index
+     *
+     * @param index The index position of the field in the inputFields array
+     * @param caped Flag for if the name should be capitalized
+     * @return "amplitude", "wave length", "frequency", or "phase constant
+     */
+    public String getField(int index, boolean caped)
+    {
+
+        String name = "";
+
+        switch (index)
+        {
+            case 0: name += "amplitude";
+                    break;
+
+            case 1: name += "wave length";
+                    break;
+
+            case 2: name += "frequency";
+                    break;
+
+            case 3: name += "phase constant";
+                    break;
+        }
+
+        if (caped)
+        {
+            name = Character.toUpperCase(name.charAt(0)) + name.substring(1);
+        }
+
+        return name;
     }
 }
