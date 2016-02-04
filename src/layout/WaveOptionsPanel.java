@@ -178,7 +178,28 @@ public class WaveOptionsPanel extends JPanel implements ActionListener
 
             if(clicked.getText() == "Submit")
             {
+                String [] inputValues = {inputs[0].getText(), inputs[1].getText(),
+                                         inputs[2].getText(),inputs[3].getText()};
+
                 //since its the submit button we need to check input
+
+                for(int i = 0; i  < inputValues.length; i++)
+                {
+                    boolean inputError = false;
+                    String errorMsg = "";
+
+                    for(int j = 0; i < inputValues[i].length(); j++)
+                    {
+
+                    }
+
+                    if(inputError)
+                    {
+                        System.out.println(errorMsg);
+                        return;
+                    }
+                }
+
                 //need to split the input around the decimal if it exists
                 //because apparently the built in test for numeric strings
                 //is just integers
@@ -225,6 +246,8 @@ public class WaveOptionsPanel extends JPanel implements ActionListener
                 //if there is an input error exit the method
                 if(inputError)
                     return;
+
+                //if there is the correct number of
             }
         }
     }
