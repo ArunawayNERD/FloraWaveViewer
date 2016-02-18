@@ -46,7 +46,7 @@
       <file leaf-file-name="Wave.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphing/Wave.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2108">
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="2108">
               <caret line="51" column="40" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
               <folding>
                 <element signature="e#2306#2307#0" expanded="true" />
@@ -56,21 +56,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WaveOptionsPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WaveOptionsPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/layout/WaveOptionsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1280" max-vertical-offset="4828">
-              <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+            <state vertical-scroll-proportion="4.523316" vertical-offset="1654" max-vertical-offset="5151">
+              <caret line="207" column="25" selection-start-line="207" selection-start-column="25" selection-end-line="207" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GraphingEngine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GraphingEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/graphing/GraphingEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3834197" vertical-offset="1909" max-vertical-offset="4267">
-              <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="122" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3388" max-vertical-offset="4267">
+              <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1705#1706#0" expanded="true" />
@@ -84,16 +84,6 @@
                 <element signature="e#7493#7494#0" expanded="true" />
                 <element signature="e#7520#7521#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WaveEvent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/graphing/WaveEvent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="765">
-              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -119,13 +109,13 @@
         <option value="$PROJECT_DIR$/src/graphing/waveUpdateListener.java" />
         <option value="$PROJECT_DIR$/src/graphing/WaveUpdateListener.java" />
         <option value="$PROJECT_DIR$/src/graphing/WaveListener.java" />
-        <option value="$PROJECT_DIR$/src/layout/WaveOptionsPanel.java" />
         <option value="$PROJECT_DIR$/src/layout/GraphPane.java" />
         <option value="$PROJECT_DIR$/src/graphing/WaveSettings.java" />
         <option value="$PROJECT_DIR$/src/graphing/Wave.java" />
         <option value="$PROJECT_DIR$/src/graphing/WaveEvent.java" />
         <option value="$PROJECT_DIR$/src/layout/Main.java" />
         <option value="$PROJECT_DIR$/src/graphing/GraphingEngine.java" />
+        <option value="$PROJECT_DIR$/src/layout/WaveOptionsPanel.java" />
       </list>
     </option>
   </component>
@@ -585,12 +575,12 @@
       <workItem from="1453920852970" duration="4609000" />
       <workItem from="1454536428787" duration="8528000" />
       <workItem from="1455294792073" duration="3251000" />
-      <workItem from="1455736143554" duration="6911000" />
+      <workItem from="1455736143554" duration="8025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69784000" />
+    <option name="totallyTimeSpent" value="70898000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -607,7 +597,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32755905" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32755905" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25036603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1012,6 +1002,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2982456" vertical-offset="0" max-vertical-offset="399">
           <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1030,19 +1021,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout/WaveOptionsPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/layout/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="4828">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/graphing/WaveEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="765">
-          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1057,20 +1042,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/graphing/WaveEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
-          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.04404145" vertical-offset="153" max-vertical-offset="765">
+          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/graphing/GraphingEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3834197" vertical-offset="1909" max-vertical-offset="4267">
-          <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="122" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1603" max-vertical-offset="4267">
+          <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1705#1706#0" expanded="true" />
@@ -1084,6 +1067,14 @@
             <element signature="e#7493#7494#0" expanded="true" />
             <element signature="e#7520#7521#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/WaveOptionsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.523316" vertical-offset="1654" max-vertical-offset="5151">
+          <caret line="207" column="25" selection-start-line="207" selection-start-column="25" selection-end-line="207" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

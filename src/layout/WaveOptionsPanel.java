@@ -1,5 +1,6 @@
 package layout;
 
+import graphing.WaveEvent;
 import graphing.WaveListener;
 
 import javax.swing.*;
@@ -235,6 +236,18 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
                         return;
                     }
                 }
+
+                //notify the listeners that a wave action took place
+                for(WaveListener wl : listeners)
+                {
+                    double amplitude = Double.valueOf(inputValues[0]);
+                    double waveLength = Double.valueOf(inputValues[1]);
+                    double frequency = Double.valueOf(inputValues[2]);
+                    double phase = Double.valueOf(inputValues[3]);
+
+                    //the wave id will need to be made variable when multiple waves are supported
+                    wl.waveUpdated(new WaveEvent(this, WaveEvent.EventType.WAVE_UPDATE, 1, amplitude, waveLength, frequency, phase));
+                }
             }
 
             if(clicked.getText().equals("Reset"))
@@ -242,6 +255,13 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
                 for(JTextField i : inputs)
                 {
                     i.setText("");
+                }
+
+                //notify the listeners that a wave action took place
+                for(WaveListener wl : listeners)
+                {
+                    //the wave id will need to be made variable when multiple waves are supported
+                    wl.waveUpdated(new WaveEvent(this, WaveEvent.EventType.WAVE_UPDATE, 1, 0, 0, 0, 0));
                 }
             }
         }
