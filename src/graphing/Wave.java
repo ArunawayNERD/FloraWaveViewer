@@ -12,6 +12,8 @@ public class Wave
     //when animation is added
     private GraphPoint [] dataPoints;
 
+    //used to uniquely identify this wave for events and drawing
+    private int waveID = -1;
 
     //hold the min and max y values computed. Used for
     //setting the Y scale if one isn't given
@@ -70,6 +72,14 @@ public class Wave
         }
 
         return dataPoints;
+    }
+
+    public int getWaveID() {
+        return waveID;
+    }
+
+    public void setWaveID(int waveID) {
+        this.waveID = waveID;
     }
 
     public double getxEnd()

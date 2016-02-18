@@ -32,7 +32,6 @@ public class Main extends JFrame
         //add the main panel
         this.setLayout(new GridLayout(1, 1));
         this.add(mainPanel);
-
     }
 
 

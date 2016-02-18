@@ -10,6 +10,7 @@ public class WaveSettings
     private double waveLength;
     private double phaseCons;
 
+
     public WaveSettings(double amplitude, double waveLength, double frequency, double phaseCons)
     {
         this.amplitude = amplitude;
