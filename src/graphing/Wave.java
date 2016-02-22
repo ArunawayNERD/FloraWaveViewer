@@ -49,7 +49,7 @@ public class Wave
         this.waveNumber = (2 * Math.PI) / waveConstants.getWaveLength();
     }
 
-    public GraphPoint [] GeneratePoints(double time)
+    public GraphPoint[] GeneratePoints(double time)
     {
         //get x range so we know the x Step
         double xRange = xEnd - xStart;

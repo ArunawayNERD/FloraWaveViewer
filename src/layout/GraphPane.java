@@ -1,11 +1,15 @@
 package layout;
 
+import graphing.GraphPoint;
+import graphing.GraphingEngine;
 import graphing.Wave;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
 
 /**
  * The JPanel with will hold all the elements to build and display the graphing area
@@ -25,7 +29,7 @@ public class GraphPane extends JPanel implements MouseMotionListener
 
     private boolean gridLines = true; //provide options for this at some point
 
-    private Wave[] graphs;
+    private GraphingEngine graphingEngine;
 
     public GraphPane()
     {
@@ -33,8 +37,12 @@ public class GraphPane extends JPanel implements MouseMotionListener
         this.setBackground(Color.LIGHT_GRAY);
         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK),"Graph"));
 
+        this.xMin = -5;
+        this.xMax = 5;
 
-        this.repaint();
+        this.yMin = -5;
+        this.yMax = 5;
+
     }
 
 
@@ -52,9 +60,6 @@ public class GraphPane extends JPanel implements MouseMotionListener
 
         double xGridLineStep = sizeX/20;
         double yGridLineStep = sizeY/20;
-
-
-      //  System.out.println(sizeX + ", "+ sizeY + ", " + xGridLineStep + ", "+ yGridLineStep);
 
         //draw the gridlines
         if(gridLines)
@@ -112,7 +117,97 @@ public class GraphPane extends JPanel implements MouseMotionListener
         g2.drawLine((int) Math.rint(xGridLineStep * 10 + boarder.left), boarder.top,
                 (int) Math.rint(xGridLineStep * 10 + boarder.left), this.getHeight() - boarder.bottom);
 
+        ///////////////////////
+        //Draw the waves
+        ///////////////////////
+
+        ArrayList<Wave> waves = graphingEngine.getWaves();
+        g2.setStroke(new BasicStroke(1));
+
+        for(int i = 0; i < waves.size(); i++)
+        {
+            //time will have to be made variable when animation is added
+            GraphPoint[] waveData = graphingEngine.getWaveData(0, i);
+
+            for(int j = 0; j < waveData.length-1; j++)
+            {
+                double modifiedYStart = yMax + waveData[j].getPosY();
+
+                double modifiedYEnd = yMax + waveData[j+1].getPosY();
+
+                System.out.println("(" + j + ", " + modifiedYStart +") to (" + j+1 + ", " + -modifiedYEnd + ")");
+                //g2.draw(new Line2D.Double(modifiedXStart, modifiedYStart, modifiedXEnd, modifiedYEnd));
+                g2.draw(new Line2D.Double(j, modifiedYStart, j+1, modifiedYEnd));
+
+            }
+            System.out.println("Finished drawing wave " + i);
+        }
+
     }
+    public GraphingEngine getGraphingEngine() {
+        return graphingEngine;
+    }
+
+    public void setGraphingEngine(GraphingEngine graphingEngine) {
+        this.graphingEngine = graphingEngine;
+    }
+
+    public double getxMax() {
+        return xMax;
+    }
+
+    public void setxMax(double xMax) {
+        this.xMax = xMax;
+    }
+
+    public double getyMin() {
+        return yMin;
+    }
+
+    public void setyMin(double yMin) {
+        this.yMin = yMin;
+    }
+
+    public double getyMax() {
+        return yMax;
+    }
+
+    public void setyMax(double yMax) {
+        this.yMax = yMax;
+    }
+
+    public double getxStep() {
+        return xStep;
+    }
+
+    public void setxStep(double xStep) {
+        this.xStep = xStep;
+    }
+
+    public double getyStep() {
+        return yStep;
+    }
+
+    public void setyStep(double yStep) {
+        this.yStep = yStep;
+    }
+
+    public boolean isGridLines() {
+        return gridLines;
+    }
+
+    public void setGridLines(boolean gridLines) {
+        this.gridLines = gridLines;
+    }
+
+    public double getxMin() {
+        return xMin;
+    }
+
+    public void setxMin(double xMin) {
+        this.xMin = xMin;
+    }
+
 
     @Override
     public void mouseDragged(MouseEvent e)

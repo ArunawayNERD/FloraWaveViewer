@@ -246,7 +246,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
                     double phase = Double.valueOf(inputValues[3]);
 
                     //the wave id will need to be made variable when multiple waves are supported
-                    wl.waveUpdated(new WaveEvent(this, WaveEvent.EventType.WAVE_UPDATE, 1, amplitude, waveLength, frequency, phase));
+                    wl.waveUpdated(new WaveEvent(this, WaveEvent.EventType.WAVE_UPDATE, 0, amplitude, waveLength, frequency, phase));
                 }
             }
 
@@ -261,10 +261,15 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
                 for(WaveListener wl : listeners)
                 {
                     //the wave id will need to be made variable when multiple waves are supported
-                    wl.waveUpdated(new WaveEvent(this, WaveEvent.EventType.WAVE_UPDATE, 1, 0, 0, 0, 0));
+                    wl.waveUpdated(new WaveEvent(this, WaveEvent.EventType.WAVE_RESET, 0, 0, 0, 0, 0));
                 }
             }
         }
+    }
+
+    public void addListener(WaveListener wl)
+    {
+        listeners.add(wl);
     }
 
     /**
