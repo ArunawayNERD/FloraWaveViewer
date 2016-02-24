@@ -134,7 +134,7 @@ public class GraphPane extends JPanel implements MouseMotionListener
             //time will have to be made variable when animation is added
             GraphPoint[] waveData = graphingEngine.getWaveData(0, i);
 
-            for(int j = 0; j < waveData.length-1; j++)
+            for(int j = 0+boarder.left; j < waveData.length-1 - boarder.right; j++)
             {
                 double modifiedYStart = this.getHeight()- boarder.bottom - ((yMax + waveData[j].getPosY()) * scalingFactor);
 
