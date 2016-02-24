@@ -120,9 +120,14 @@ public class GraphPane extends JPanel implements MouseMotionListener
         ///////////////////////
         //Draw the waves
         ///////////////////////
+        g2.setStroke(new BasicStroke(1));
 
         ArrayList<Wave> waves = graphingEngine.getWaves();
-        g2.setStroke(new BasicStroke(1));
+
+        //get the scaling factor. This is used to map the relative
+        //position (yMin - yMax) to the actual pixel position
+
+        double scalingFactor = sizeY/(yMax - yMin);
 
         for(int i = 0; i < waves.size(); i++)
         {
@@ -131,9 +136,9 @@ public class GraphPane extends JPanel implements MouseMotionListener
 
             for(int j = 0; j < waveData.length-1; j++)
             {
-                double modifiedYStart = yMax + waveData[j].getPosY();
+                double modifiedYStart = this.getHeight()- boarder.bottom - ((yMax + waveData[j].getPosY()) * scalingFactor);
 
-                double modifiedYEnd = yMax + waveData[j+1].getPosY();
+                double modifiedYEnd = this.getHeight()- boarder.bottom - ((yMax + waveData[j+1].getPosY()) * scalingFactor);
 
                 System.out.println("(" + j + ", " + modifiedYStart +") to (" + j+1 + ", " + -modifiedYEnd + ")");
                 //g2.draw(new Line2D.Double(modifiedXStart, modifiedYStart, modifiedXEnd, modifiedYEnd));
