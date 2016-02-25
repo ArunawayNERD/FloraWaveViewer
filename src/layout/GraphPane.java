@@ -51,7 +51,6 @@ public class GraphPane extends JPanel implements MouseMotionListener
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-
         Insets boarder = this.getInsets();
 
         //get the drawable size adjusted for the boarders
@@ -67,35 +66,31 @@ public class GraphPane extends JPanel implements MouseMotionListener
             for(int i = 0; i < 21; i++)
             {
                 //draw vert lines
-                g2.drawLine((int) Math.rint(xGridLineStep * i + boarder.left), boarder.top,
-                            (int) Math.rint(xGridLineStep * i + boarder.left), this.getHeight() - boarder.bottom);
-
+                g2.draw(new Line2D.Double(xGridLineStep * i + boarder.left, boarder.top,
+                                          xGridLineStep * i + boarder.left, this.getHeight() - boarder.bottom));
                 //draw horiz line
-                g2.drawLine(boarder.left, (int) Math.rint(yGridLineStep * i + boarder.top),
-                            this.getWidth() - boarder.right,(int) Math.rint(yGridLineStep * i + boarder.top));
+                g2.draw(new Line2D.Double(boarder.left, yGridLineStep * i + boarder.top,
+                                        this.getWidth() - boarder.right, yGridLineStep * i + boarder.top));
             }
         }
 
         //draw the tick marks on the axis
-
         g2.setColor(Color.black);
         g2.setStroke(new BasicStroke(3));
 
-        int midX = (int)(xGridLineStep * 10 + boarder.left);
-        int midY = (int)(yGridLineStep * 10 + boarder.top);
+        double midX = xGridLineStep * 10 + boarder.left;
+        double midY = yGridLineStep * 10 + boarder.top;
 
         for(int i = 0; i < 21; i++)
         {
             //draw vert lines
-            g2.drawLine((int) Math.rint(xGridLineStep * i + boarder.left), midY - 10,
-                    (int) Math.rint(xGridLineStep * i + boarder.left), midY + 10);
+            g2.draw(new Line2D.Double(xGridLineStep * i + boarder.left, midY - 10, xGridLineStep * i + boarder.left, midY + 10));
 
             //draw horiz line
-            g2.drawLine(midX - 10, (int) Math.rint(yGridLineStep * i + boarder.top),
-                        midX + 10,(int) Math.rint(yGridLineStep * i + boarder.top));
+            g2.draw(new Line2D.Double(midX - 10, yGridLineStep * i + boarder.top, midX + 10, yGridLineStep * i + boarder.top));
         }
 
-        //draw the X
+        //draw the X axis
         g2.setStroke(new BasicStroke(4));
 
         if((int) Math.rint(sizeY) % 2  == 1)
@@ -103,8 +98,8 @@ public class GraphPane extends JPanel implements MouseMotionListener
 
 
         //The x Axis should be the middle grid line so we will reuse the code from that
-        g2.drawLine(boarder.left, (int) Math.rint(yGridLineStep * 10 + boarder.top),
-                this.getWidth() - boarder.right,(int) Math.rint(yGridLineStep * 10 + boarder.top));
+        g2.draw(new Line2D.Double(boarder.left, yGridLineStep * 10 + boarder.top,
+                this.getWidth() - boarder.right, yGridLineStep * 10 + boarder.top));
 
         //draw Y axis
         g2.setStroke(new BasicStroke(4));
@@ -114,8 +109,8 @@ public class GraphPane extends JPanel implements MouseMotionListener
 
 
         //The y Axis should be the middle grid line so we will reuse the code from that
-        g2.drawLine((int) Math.rint(xGridLineStep * 10 + boarder.left), boarder.top,
-                (int) Math.rint(xGridLineStep * 10 + boarder.left), this.getHeight() - boarder.bottom);
+        g2.draw(new Line2D.Double(xGridLineStep * 10 + boarder.left, boarder.top,
+                xGridLineStep * 10 + boarder.left, this.getHeight() - boarder.bottom));
 
         ///////////////////////
         //Draw the waves
@@ -126,7 +121,6 @@ public class GraphPane extends JPanel implements MouseMotionListener
 
         //get the scaling factor. This is used to map the relative
         //position (yMin - yMax) to the actual pixel position
-
         double scalingFactor = sizeY/(yMax - yMin);
 
         for(int i = 0; i < waves.size(); i++)
@@ -134,21 +128,17 @@ public class GraphPane extends JPanel implements MouseMotionListener
             //time will have to be made variable when animation is added
             GraphPoint[] waveData = graphingEngine.getWaveData(0, i);
 
-            for(int j = 0+boarder.left; j < waveData.length-1 - boarder.right; j++)
+            for(int j = boarder.left; j < waveData.length-1 - boarder.right; j++)
             {
                 double modifiedYStart = this.getHeight()- boarder.bottom - ((yMax + waveData[j].getPosY()) * scalingFactor);
-
                 double modifiedYEnd = this.getHeight()- boarder.bottom - ((yMax + waveData[j+1].getPosY()) * scalingFactor);
 
-                System.out.println("(" + j + ", " + modifiedYStart +") to (" + j+1 + ", " + -modifiedYEnd + ")");
-                //g2.draw(new Line2D.Double(modifiedXStart, modifiedYStart, modifiedXEnd, modifiedYEnd));
                 g2.draw(new Line2D.Double(j, modifiedYStart, j+1, modifiedYEnd));
 
             }
-            System.out.println("Finished drawing wave " + i);
         }
-
     }
+
     public GraphingEngine getGraphingEngine() {
         return graphingEngine;
     }
