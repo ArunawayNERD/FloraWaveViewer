@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by Johnny on 2/4/2016.
  */
-public class GraphingEngine implements WaveListener
+public class GraphingEngine implements WaveListener, GraphOptionListener
 {
     /** List of the the wave objects where index is the tab it is on in the ui.
      * If  a wave/tab is removed in the ui the corresponding wav element should be
@@ -26,7 +26,7 @@ public class GraphingEngine implements WaveListener
 
     private ArrayList<HashMap<Double, GraphPoint[]>> waveData;
 
-     private double xMin = -5;
+    private double xMin = -5;
     private double xMax = 5;
 
     private int numPoints = 100;
@@ -188,7 +188,14 @@ public class GraphingEngine implements WaveListener
         {
             w.setDataPoints(new GraphPoint[numPoints]);
         }
+
+        //have the panels repaint so the change is visible
+        for(GraphPane gp : panes)
+        {
+            gp.repaint();
+        }
     }
+
     /**
      * This method updates all the waves' x values
      */
@@ -198,6 +205,12 @@ public class GraphingEngine implements WaveListener
         {
             w.setxStart(xMin);
             w.setxEnd(xMax);
+        }
+
+        //have the panels repaint so the change is visible
+        for(GraphPane gp : panes)
+        {
+            gp.repaint();
         }
     }
 
@@ -209,6 +222,10 @@ public class GraphingEngine implements WaveListener
     private void clearWaveData()
     {
         waveData = new ArrayList<HashMap<Double, GraphPoint[]>>();
+        while(waveData.size() <= waves.size())
+        {
+            waveData.add(new HashMap<Double, GraphPoint[]>());
+        }
     }
 
     @Override
@@ -228,7 +245,6 @@ public class GraphingEngine implements WaveListener
             }
             //update the wave
 
-            System.out.println(waves.size() + " " + e.getWaveID() + " " + waveData.size());
             waves.set(e.getWaveID(), new Wave(xMin, xMax, numPoints, e.getSettings()));
 
             //clear the data from the previous version of the wave
@@ -255,6 +271,31 @@ public class GraphingEngine implements WaveListener
         {
             pane.repaint();
         }
+    }
+
+    @Override
+    public void GraphOptionUpdate(GraphOptionEvent e)
+    {
+
+        System.out.println("Got update event");
+        if(e.getNewXMin() != xMin || e.getNewXMax() != xMax)
+        {
+            setXMin(e.getNewXMin());
+            setXMax(e.getNewXMax());
+        }
+
+        //we don't care too much about the y value because it is the dependent variable and doesn't effect graphing,
+        //but since we have the info from the event object we will update the graph panel
+        for(GraphPane gp : panes)
+        {
+            gp.setyMin(e.getNewYMin());
+            gp.setyMax(e.getNewYMax());
+
+            gp.repaint();
+        }
+
+
+
     }
 
     public ArrayList<Wave> getWaves() {

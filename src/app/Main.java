@@ -29,6 +29,9 @@ public class Main
         //give the graphs engine to the graph pane so it can use it
         graphPane.setGraphingEngine(waveGraphingEngine);
 
+        //add the graphing engine as a listener to the graph option panel so the graphing engine will receive events
+        graphOptions.addListener(waveGraphingEngine);
+
         //add the graphing engine as a listener to the wave option panel so the graphing engine will receive events
         waveOptions.addListener(waveGraphingEngine);
     }

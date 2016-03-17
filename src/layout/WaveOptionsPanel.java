@@ -68,6 +68,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
         constraints.insets = new Insets(20, 0, 20, 15);
         constraints.anchor = GridBagConstraints.WEST;
         inputs[0] = new JTextField(25);
+        inputs[0].setText("0");
         this.add(inputs[0], constraints);
 
         /////////////
@@ -93,6 +94,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
         constraints.insets = new Insets(20, 0, 20, 15);
         constraints.anchor = GridBagConstraints.WEST;
         inputs[1] = new JTextField(25);
+        inputs[1].setText("0");
         this.add(inputs[1], constraints);
 
         ///////////
@@ -117,6 +119,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
         constraints.insets = new Insets(20, 0, 20, 15);
         constraints.anchor = GridBagConstraints.WEST;
         inputs[2] = new JTextField(25);
+        inputs[2].setText("0");
         this.add(inputs[2], constraints);
 
         /////////////////
@@ -142,6 +145,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
         constraints.insets = new Insets(20, 0, 20, 15);
         constraints.anchor = GridBagConstraints.WEST;
         inputs[3] = new JTextField(25);
+        inputs[3].setText("0");
         this.add(inputs[3], constraints);
 
         ///////////
@@ -202,28 +206,44 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
                         errorMsg += getField(i, true) + " is a required field.\nPlease enter a value.";
                     }
 
+                    //we do not have to check if the input error is true yet because the only time
+                    //input error is true at this point is if the input length is zero.
+                    //if that is the case this loop will never run.
                     for (int j = 0; j < inputValues[i].length(); j++)
                     {
-                        if (!(Character.isDigit(inputValues[i].charAt(j)) || inputValues[i].charAt(j) == '.'))
+                        if(!inputError)
                         {
+                            if (!(Character.isDigit(inputValues[i].charAt(j)) || inputValues[i].charAt(j) == '.' || inputValues[i].charAt(j) == '-'))
+                            {
 
-                            //if the digit is not a number or a decimal point, set the
-                            //error flag and error message. Then exit this loop
-                            inputError = true;
-                            errorMsg += "The entered " + getField(i, false) +  " is not a number.\nPlease correct the value.";
-                            break;
-                        }
+                                //if the digit is not a number or a decimal point, set the error flag and error message.
+                                inputError = true;
+                                errorMsg += "The entered " + getField(i, false) + " is not a number.\nPlease correct the value.";
 
-                        //if the character is a decimal point then increment the counter
-                        //this is to make sure we don't get numbers like 1..0 or 1.1.1 etc
-                        if(inputValues[i].charAt(j) == '.')
-                        {
-                            decimalPointCount++;
+                            }
+
+
+                            //a check to make sure that there are no other negative
+                            // signs except for one as the first character
+                            if(j != 0 && inputValues[i].charAt(j) == '-')
+                            {
+                                inputError = true;
+                                errorMsg += "The entered " + getField(i, false) + " is not a valid number.\nPlease correct the value.";
+                            }
+
+                            //if the character is a decimal point then increment the counter
+                            //this is to make sure we don't get numbers like 1..0 or 1.1.1 etc
+                            if (inputValues[i].charAt(j) == '.')
+                            {
+                                decimalPointCount++;
+                            }
                         }
                     }
 
                     //if there are too many decimal points set the input error flag and message
-                    if(decimalPointCount > 1)
+                    //We check for the input error flag here because if an input error was caught
+                    // in the for loop we don't want to overwrite the error msg.
+                    if(decimalPointCount > 1 && !inputError)
                     {
                         inputError = true;
                         errorMsg = "The entered value for " + getField(i, false) + " is not a valid number.\nPlease correct the value.";
@@ -254,7 +274,7 @@ public class WaveOptionsPanel extends JPanel implements ActionListener {
             {
                 for(JTextField i : inputs)
                 {
-                    i.setText("");
+                    i.setText("0");
                 }
 
                 //notify the listeners that a wave action took place
